@@ -1,1 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Una pequeña sorpresa 💗</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #f7b6d2, #ffe7f0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    color: #6d3150;
+}
+
+/* CONTENEDOR */
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    text-align: center;
+}
+
+/* TITULO */
+
+.intro {
+    margin-bottom: 25px;
+}
+
+.intro h1 {
+    font-size: 35px;
+    color: #a52f62;
+    margin-bottom: 8px;
+}
+
+.intro p {
+    font-size: 19px;
+}
+
+/* CAJA */
+
+.gift-area {
+    margin: 25px auto;
+    cursor: pointer;
+    width: 230px;
+    height: 210px;
+    position: relative;
+    transition: transform .4s;
+}
+
+.gift-area:hover {
+    transform: scale(1.05);
+}
+
+.box {
+    position: absolute;
+    width: 190px;
+    height: 130px;
+    background: #e85b91;
+    bottom: 0;
+    left: 20px;
+    border-radius: 5px;
+    box-shadow: 0 12px 25px rgba(0,0,0,.18);
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 130px;
+    background: #f8a3c2;
+    left: 78px;
+}
+
+.lid {
+    position: absolute;
+    width: 215px;
+    height: 38px;
+    background: #d9477e;
+    top: 40px;
+    left: 7px;
+    border-radius: 6px;
+}
+
+.lid::before {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 38px;
+    background: #f8a3c2;
+    left: 90px;
+}
+
+.ribbon {
+    position: absolute;
+    width: 70px;
+    height: 35px;
+    border: 10px solid #f8a3c2;
+    border-radius: 50%;
+    top: 10px;
+    left: 80px;
+}
+
+.open-text {
+    position: absolute;
+    bottom: -35px;
+    width: 100%;
+    font-weight: bold;
+    color: #a52f62;
+}
+
+/* SORPRESAS */
+
+.surprises {
+    display: none;
+    animation: aparecer .8s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TARJETAS */
+
+.card {
+    background: rgba(255,255,255,.93);
+    border-radius: 22px;
+    padding: 28px;
+    margin: 22px auto;
+    max-width: 700px;
+    box-shadow: 0 10px 30px rgba(120,40,80,.15);
+    border: 2px solid #f3b4ce;
+}
+
+.card h2 {
+    color: #b33469;
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.card h3 {
+    color: #d15c87;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* EXPEDIENTE */
+
+.secret {
+    background: #fff4f8;
+    border: 2px dashed #d95a88;
+}
+
+.expediente {
+    text-align: left;
+    background: #ffe5ef;
+    padding: 20px;
+    border-radius: 15px;
+    line-height: 1.9;
+    margin-top: 15px;
+}
+
+/* MEDIA */
+
+.media {
+    width: 100%;
+    max-width: 550px;
+    margin: 15px auto 0;
+    border-radius: 15px;
+    display: block;
+    box-shadow: 0 7px 20px rgba(0,0,0,.15);
+}
+
+video {
+    background: #222;
+}
+
+/* BOTONES */
+
+button {
+    border: none;
+    background: #d94d83;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: .3s;
+}
+
+button:hover {
+    background: #b93669;
+    transform: scale(1.04);
+}
+
+/* QR */
+
+.qr-card {
+    display: none;
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    margin: 25px auto;
+    max-width: 550px;
+    box-shadow: 0 10px 30px rgba(120,40,80,.18);
+    animation: aparecer .8s ease;
+}
+
+.qr-card h2 {
+    color: #b33469;
+    margin-bottom: 10px;
+}
+
+.qr-card p {
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+#qrcode {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.final-text {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #a52f62;
+    font-weight: bold;
+}
+
+/* CORAZONES */
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.heart {
+    position: absolute;
+    font-size: 25px;
+    animation: flotar 7s linear infinite;
+    opacity: .6;
+}
+
+.heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(3) {
+    left: 55%;
+    animation-delay: 1s;
+}
+
+.heart:nth-child(4) {
+    left: 80%;
+    animation-delay: 3s;
+}
+
+@keyframes flotar {
+    from {
+        bottom: -50px;
+        transform: translateX(0);
+    }
+
+    to {
+        bottom: 110%;
+        transform: translateX(40px);
+    }
+}
+
+/* CELULAR */
+
+@media(max-width:600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .intro h1 {
+        font-size: 27px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card h2 {
+        font-size: 23px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hearts">
+    <div class="heart">💕</div>
+    <div class="heart">💗</div>
+    <div class="heart">💕</div>
+    <div class="heart">💖</div>
+</div>
+
+<div class="container">
+
+    <!-- INTRODUCCIÓN -->
+
+    <div class="intro">
+        <h1>💕 Para empezar...</h1>
+        <p>Abre esta primera sorpresa</p>
+    </div>
+
+
+    <!-- CAJA -->
+
+    <div class="gift-area" onclick="abrirCaja()">
+
+        <div class="ribbon"></div>
+
+        <div class="lid"></div>
+
+        <div class="box"></div>
+
+        <div class="open-text">
+            🎁 Haz clic para abrir
+        </div>
+
+    </div>
+
+
+    <!-- TODAS LAS SORPRESAS -->
+
+    <div class="surprises" id="surprises">
+
+
+        <!-- TARJETA 1 -->
+
+        <div class="card">
+
+            <h2>🫶 Cosas que solo tú haces</h2>
+
+            <h3>Porque eres única</h3>
+
+            <p>
+                Tus ocurrencias, tus frases, tus formas de hacerme
+                reír y todos esos pequeños momentos que me apoyaste. 💕
+            </p>
+
+        </div>
+
+
+
+     
+        <!-- TARJETA 4 -->
+
+        <div class="card">
+
+            <h2>🥹 Si algún día...</h2>
+
+            <h3>Guarda estos mensajes</h3>
+
+            <p>
+                Si algún día necesitas recordar lo especial que eres,
+                vuelve a este pequeño regalo y recuerda todos estos
+                momentos. 💗
+            </p>
+
+        </div>
+
+
+        <!-- VIDEO 1 -->
+
+        <div class="card">
+
+            <h2>😂 Evidencia de que juntas somos una jaladota</h2>
+
+            <p>
+                Una pequeña evidencia de nuestras pedas mañaneras. 😂
+            </p>
+
+            <video class="media" controls>
+                <source src="media/video1.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+            </video>
+
+        </div>
+
+
+        <!-- FOTO -->
+
+        <div class="card">
+
+            <h2>📸 Una prueba más de nuestros momentos de vagues 💗</h2>
+
+            <p>
+                Otro pequeño recuerdo para guardar. 🥹💕
+            </p>
+
+            <img
+                class="media"
+                src="media/foto.jpg"
+                alt="Nuestro recuerdo"
+            >
+
+        </div>
+
+
+        <!-- VIDEO 2 -->
+
+        <div class="card">
+
+            <h2>😂 todavía no supero esto JAJAJA</h2>
+
+            <p>
+                Porque obviamente no podía faltar este momento. 😂
+            </p>
+
+            <video class="media" controls>
+                <source src="media/video2.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+            </video>
+
+        </div>
+
+
+        <!-- ULTIMA SORPRESA -->
+
+        <div class="card">
+
+            <h2>💌 Después de tantas risas...</h2>
+
+            <p>
+                todavía falta lo último. 💗
+            </p>
+
+            <button onclick="mostrarQR()">
+                💌 DESCUBRIR LA ÚLTIMA SORPRESA
+            </button>
+
+        </div>
+
+
+        <!-- QR -->
+
+        <div class="qr-card" id="qrCard">
+
+            <h2>💗 Una última cosita...</h2>
+
+            <p>
+                Escanea este código y descubre la última sorpresa. 🥹
+            </p>
+
+            <div id="qrcode"></div>
+
+            <p class="final-text">
+                Espero que te guste. 💕✨
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LIBRERÍA DEL QR -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<script>
+
+/* ABRIR CAJA */
+
+function abrirCaja() {
+
+    document.querySelector(".gift-area").style.display = "none";
+
+    document.querySelector(".intro").style.display = "none";
+
+    document.getElementById("surprises").style.display = "block";
+
+}
+
+
+/* MOSTRAR QR */
+
+function mostrarQR() {
+
+    const qrCard = document.getElementById("qrCard");
+
+    qrCard.style.display = "block";
+
+    qrCard.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+
+    /* EVITAR CREAR EL QR MÁS DE UNA VEZ */
+
+    if (document.getElementById("qrcode").innerHTML === "") {
+
+        const direccionCarta =
+        "https://ms3428246-ctrl.github.io/portafolio-estefaniamoreno/";
+
+        new QRCode(
+            document.getElementById("qrcode"),
+            {
+                text: direccionCarta,
+                width: 220,
+                height: 220,
+                colorDark: "#b83f73",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            }
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
